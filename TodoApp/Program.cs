@@ -1,16 +1,10 @@
-﻿using System;
-using System.Data.Common;
-
-namespace TodoApp
+﻿namespace TodoApp
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-
             Console.WriteLine("Todo App v0.1 by Mattia");
-
-            ConsoleKeyInfo key;
 
             Console.WriteLine("Choose you action");
             Console.WriteLine("1) Show all Todo's");
@@ -19,7 +13,7 @@ namespace TodoApp
             Console.WriteLine("4) Show Todo");
             Console.WriteLine("5) Create a new Todo");
 
-            key = Console.ReadKey();
+            var key = Console.ReadKey();
             Console.WriteLine("");
             Console.WriteLine("");
 
@@ -29,7 +23,7 @@ namespace TodoApp
 
             if (key.KeyChar == '1')
             {
-                foreach (Task item in todos)
+                foreach (var item in todos)
                 {
                     Console.WriteLine(item);
                 }
@@ -37,7 +31,7 @@ namespace TodoApp
 
             if (key.KeyChar == '2')
             {
-                foreach (Task item in todos.Where(n => n.Status == Status.Done))
+                foreach (var item in todos.Where(n => n.Status == Status.Done))
                 {
                     Console.WriteLine(item);
                 }
@@ -45,7 +39,7 @@ namespace TodoApp
 
             if (key.KeyChar == '3')
             {
-                foreach (Task item in todos.Where(n => n.Status == Status.Progress || n.Status == Status.Scheduled))
+                foreach (var item in todos.Where(n => n.Status == Status.Progress || n.Status == Status.Scheduled))
                 {
                     Console.WriteLine(item);
                 }
@@ -56,9 +50,9 @@ namespace TodoApp
                 Console.Write("Enter ID of the TODO item: ");
                 var id = Console.ReadKey();
                 Console.WriteLine("");
-    
+
                 var todo = todos.ElementAt(int.Parse(id.KeyChar.ToString()));
-            
+
 
                 Console.WriteLine("Title: " + todo.Name);
 
@@ -87,32 +81,24 @@ namespace TodoApp
             }
 
             taskService.Save();
-
         }
 
         private static void HandleTodoAction(char action, Task task, TaskService taskService)
         {
             switch (action)
             {
-
                 case 'd':
-                    {
-                        taskService.DeleteTask(task.Key);
+                {
+                    taskService.DeleteTask(task.Key);
 
-                        break;
-
-                    }
+                    break;
+                }
                 case 'c':
-                    {
-                        taskService.ChangeStatus(task, Status.Done);
+                {
+                    taskService.ChangeStatus(task, Status.Done);
 
-                        break;
-
-                    }
-                default:
-                    {
-                        break;
-                    }
+                    break;
+                }
             }
         }
     }

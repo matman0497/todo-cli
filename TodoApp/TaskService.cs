@@ -37,7 +37,7 @@ namespace TodoApp
 
             var line = CsvParser.CreateLine([task.Name, task.Description, task.Status.ToString()]);
 
-            StreamWriter streamWriter = new StreamWriter(this._path, true);
+            var streamWriter = new StreamWriter(_path, true);
             streamWriter.WriteLine(line);
             streamWriter.Close();
 
