@@ -1,7 +1,7 @@
 namespace TodoApp {
     enum Status {
-        Pending,
         Done,
-        Scheduled
+        Scheduled,
+        Progress,
     }
 }

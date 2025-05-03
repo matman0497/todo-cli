@@ -12,3 +12,4 @@
 /Users/matman/DotNet/01/TodoApp/obj/Debug/net9.0/TodoApp.pdb
 /Users/matman/DotNet/01/TodoApp/obj/Debug/net9.0/TodoApp.genruntimeconfig.cache
 /Users/matman/DotNet/01/TodoApp/obj/Debug/net9.0/ref/TodoApp.dll
+/Users/matman/DotNet/01/TodoApp/obj/Debug/net9.0/TodoApp.sourcelink.json
