@@ -52,9 +52,8 @@
                 Console.WriteLine("");
 
                 var todo = todos.ElementAt(int.Parse(id.KeyChar.ToString()));
-
-
-                Console.WriteLine("Title: " + todo.Name);
+                
+                Console.WriteLine($"Title: {todo.Name}");
 
                 Console.WriteLine("");
                 Console.WriteLine("(d) Delete   (c) Complete    (x) Exit");

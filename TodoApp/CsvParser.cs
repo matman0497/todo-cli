@@ -1,13 +1,17 @@
 using System.Text;
 
-namespace TodoApp {
-    class CsvParser {
-        public static List<string> Parse(string line) {
-
-            List<string> columns = new();
+namespace TodoApp
+{
+    internal static class CsvParser
+    {
+        public static List<string> Parse(string line)
+        {
+            List<string> columns = [];
             var builder = new StringBuilder();
-            foreach(char c in line.ToCharArray()) {
-                if (c == ',') {
+            foreach (var c in line)
+            {
+                if (c == ',')
+                {
                     columns.Add(builder.ToString());
                     builder.Clear();
                     continue;
@@ -19,18 +23,20 @@ namespace TodoApp {
             columns.Add(builder.ToString());
 
             return columns;
-
         }
 
-        public static string CreateLine(string[] columns) {
+        public static string CreateLine(string[] columns)
+        {
             var builder = new StringBuilder();
 
-            bool first = true;
-            foreach(string column in columns) {
-
-                if (first == false) {
-                    builder.Append(',');    
+            var first = true;
+            foreach (var column in columns)
+            {
+                if (first == false)
+                {
+                    builder.Append(',');
                 }
+
                 builder.Append(column);
                 first = false;
             }

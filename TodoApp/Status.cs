@@ -1,5 +1,5 @@
 namespace TodoApp {
-    enum Status {
+    internal enum Status {
         Done,
         Scheduled,
         Progress,

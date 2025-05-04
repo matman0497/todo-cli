@@ -1,6 +1,6 @@
 namespace TodoApp
 {
-    class Task
+    internal class Task
     {
         public required string Name { get; set; }
         public required int Key { get; set; }
@@ -9,7 +9,7 @@ namespace TodoApp
 
         public override string ToString()
         {
-            return Key.ToString() + " - " + Name + " (" + Enum.GetName(typeof(Status), Status) + "): " + Description;
+            return Key + " - " + Name + " (" + Enum.GetName(typeof(Status), Status) + "): " + Description;
         }
     }
 }
