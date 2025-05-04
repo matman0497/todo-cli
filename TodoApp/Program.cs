@@ -10,8 +10,9 @@
             Console.WriteLine("1) Show all Todo's");
             Console.WriteLine("2) Show all completed Todo's");
             Console.WriteLine("3) Show all open Todo's");
-            Console.WriteLine("4) Show Todo");
-            Console.WriteLine("5) Create a new Todo");
+            Console.WriteLine("4) Search for Todo's");
+            Console.WriteLine("5) Show Todo");
+            Console.WriteLine("6) Create a new Todo");
 
             var key = Console.ReadKey();
             Console.WriteLine("");
@@ -47,12 +48,35 @@
 
             if (key.KeyChar == '4')
             {
+                Console.Write("Search: ");
+                var searchLine = Console.ReadLine();
+
+
+                var items = new List<Task>();
+
+                if (string.IsNullOrEmpty(searchLine))
+                {
+                    items = todos;
+                }
+                else
+                {
+                    items = todos.Where(n => n.Name.Contains(searchLine)).ToList();
+                }
+
+                foreach (var item in items)
+                {
+                    Console.WriteLine(item);
+                }
+            }
+
+            if (key.KeyChar == '5')
+            {
                 Console.Write("Enter ID of the TODO item: ");
                 var id = Console.ReadKey();
                 Console.WriteLine("");
 
                 var todo = todos.ElementAt(int.Parse(id.KeyChar.ToString()));
-                
+
                 Console.WriteLine($"Title: {todo.Name}");
 
                 Console.WriteLine("");
@@ -62,13 +86,14 @@
                 HandleTodoAction(action.KeyChar, todo, taskService);
             }
 
-            if (key.KeyChar == '5')
+            if (key.KeyChar == '6')
             {
                 Console.Write("Enter a title: ");
                 var title = Console.ReadLine();
                 Console.Write("Enter a description: ");
                 var description = Console.ReadLine();
-
+                Console.Write("Enter a due date: ");
+                var dueDate = Console.ReadLine();
                 if (title == null || description == null)
                 {
                     Console.Write("Title and Description is required");
@@ -76,7 +101,7 @@
                     return;
                 }
 
-                taskService.CreateTask(title, description);
+                taskService.CreateTask(title, description, dueDate != null ? DateTime.Parse(dueDate) : null);
             }
 
             taskService.Save();

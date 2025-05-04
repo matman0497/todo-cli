@@ -7,9 +7,18 @@ namespace TodoApp
         public required Status Status { get; set; }
         public required string Description { get; set; }
 
+        public DateTime? Due { get; set; }
+
         public override string ToString()
         {
-            return Key + " - " + Name + " (" + Enum.GetName(typeof(Status), Status) + "): " + Description;
+            var toString = $"{Key} - {Name} ({Enum.GetName(typeof(Status), Status)}): {Description} ";
+
+            if (Due.HasValue)
+            {
+                toString += "Due: " + Due;
+            }
+
+            return toString;
         }
     }
 }
